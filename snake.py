@@ -15,6 +15,7 @@ class Snake:
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
+        self.head.color("white")
 
     def create_snake(self):
         for position in STARTING_POSITIONS:
@@ -22,11 +23,22 @@ class Snake:
 
     def add_segment(self, position):
         new_segment = Turtle(shape="square")
-        new_segment.color("white")
+        new_segment.color("Green")
+        new_segment.shapesize(stretch_wid=0.5, stretch_len=0.5)
         # for not drawing as move.
         new_segment.penup()
         new_segment.goto(position)
         self.segments.append(new_segment)
+
+    # resetting snake
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+        self.head.color("white")
 
     # for extending the snake after eating food.
     def extend(self):
